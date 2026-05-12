@@ -5,6 +5,9 @@
 
 int main()
 {
+    for (int i = 0; i < 100; i++) {
+        std::cout << "こんにちは、世界!\n";
+   }
     std::cout << "Hello World!\n";
 }
 
