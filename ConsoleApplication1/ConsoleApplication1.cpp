@@ -5,6 +5,32 @@
 
 int main()
 {
+#if 1
+	auto forward = std::string("Hello World!");
+	auto reverse = forward;
+
+	std::reverse(reverse.begin(), reverse.end());
+#else
+	const char* forward = "Hello World!";
+	int len = strlen(forward);
+	char* reverse = new char[len + 1];
+
+	reverse[len] = 0;
+
+	for (int i = 0; i < len; ++i) {
+		reverse[i] = forward[len - 1 - i];
+	}
+#endif
+	auto i = 10;
+
+	while (i--) {
+		if (i & 1) {
+			std::cout << reverse << std::endl;
+		}
+		else {
+			std::cout << forward << std::endl;
+		}
+	}
     std::cout << "Hello World!\n";
 }
 
