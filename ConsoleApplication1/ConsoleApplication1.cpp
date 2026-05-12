@@ -5,8 +5,17 @@
 
 int main()
 {
-    for (int i = 0; i < 100; i++) {
-        std::cout << "こんにちは、世界!\n";
+    for (int i = 0; i < 10; i++) {
+        if (i % 2 == 0)
+        {
+            std::cout << "こんにちは、世界!\n";
+
+        }
+        else {
+            std::cout << "!界世、はちにんこ\n";
+
+
+        }
    }
     std::cout << "Hello World!\n";
 }
