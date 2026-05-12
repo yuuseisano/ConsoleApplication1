@@ -1,23 +1,32 @@
-﻿// ConsoleApplication1.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
-//
+﻿// ConsoleApplication1.cpp : 'main' 関数を含む。C++14 想定。
 
 #include <iostream>
+#include <string>
+
+std::string ReverseUtf8(const std::string& s)
+{
+    std::string r;
+    r.reserve(s.size());
+    for (std::size_t i = s.size(); i > 0; ) {
+        std::size_t j = i - 1;
+        while (j > 0 && (static_cast<unsigned char>(s[j]) & 0xC0) == 0x80) --j;
+        r.append(s.data() + j, i - j);
+        i = j;
+    }
+    return r;
+}
 
 int main()
 {
-    for (int i = 0; i < 10; i++) {
-        if (i % 2 == 0)
-        {
-            std::cout << "こんにちは、世界!\n";
+    const std::string original = "Hello World!";
+    const std::string rev = ReverseUtf8(original);
 
-        }
-        else {
-            std::cout << "!界世、はちにんこ\n";
+    for (int i = 0; i < 10; ++i) {
+        std::cout << ((i % 2 == 1) ? rev : original) << '\n';
+    }
 
-
-        }
-   }
     std::cout << "Hello World!\n";
+    return 0;
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
